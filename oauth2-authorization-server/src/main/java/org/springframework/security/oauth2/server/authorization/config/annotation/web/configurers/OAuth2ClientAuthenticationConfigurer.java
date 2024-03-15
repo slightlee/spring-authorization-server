@@ -79,6 +79,8 @@ public final class OAuth2ClientAuthenticationConfigurer extends AbstractOAuth2Co
 	 * Adds an {@link AuthenticationConverter} used when attempting to extract client credentials from {@link HttpServletRequest}
 	 * to an instance of {@link OAuth2ClientAuthenticationToken} used for authenticating the client.
 	 *
+	 * 添加一个 AuthenticationConverter（预处理器），用于尝试从 HttpServletRequest 提取客户端凭证到 OAuth2ClientAuthenticationToken 实例。
+	 *
 	 * @param authenticationConverter an {@link AuthenticationConverter} used when attempting to extract client credentials from {@link HttpServletRequest}
 	 * @return the {@link OAuth2ClientAuthenticationConfigurer} for further configuration
 	 */
@@ -92,6 +94,8 @@ public final class OAuth2ClientAuthenticationConfigurer extends AbstractOAuth2Co
 	 * Sets the {@code Consumer} providing access to the {@code List} of default
 	 * and (optionally) added {@link #authenticationConverter(AuthenticationConverter) AuthenticationConverter}'s
 	 * allowing the ability to add, remove, or customize a specific {@link AuthenticationConverter}.
+	 *
+	 * 设置提供访问默认和（可选）添加的 AuthenticationConverter 列表的消费者，允许添加、删除或自定义特定 AuthenticationConverter。
 	 *
 	 * @param authenticationConvertersConsumer the {@code Consumer} providing access to the {@code List} of default and (optionally) added {@link AuthenticationConverter}'s
 	 * @return the {@link OAuth2ClientAuthenticationConfigurer} for further configuration
@@ -107,6 +111,8 @@ public final class OAuth2ClientAuthenticationConfigurer extends AbstractOAuth2Co
 	/**
 	 * Adds an {@link AuthenticationProvider} used for authenticating an {@link OAuth2ClientAuthenticationToken}.
 	 *
+	 * 添加用于验证 OAuth2ClientAuthenticationToken 的 AuthenticationProvider（主处理器）
+	 *
 	 * @param authenticationProvider an {@link AuthenticationProvider} used for authenticating an {@link OAuth2ClientAuthenticationToken}
 	 * @return the {@link OAuth2ClientAuthenticationConfigurer} for further configuration
 	 */
@@ -120,6 +126,8 @@ public final class OAuth2ClientAuthenticationConfigurer extends AbstractOAuth2Co
 	 * Sets the {@code Consumer} providing access to the {@code List} of default
 	 * and (optionally) added {@link #authenticationProvider(AuthenticationProvider) AuthenticationProvider}'s
 	 * allowing the ability to add, remove, or customize a specific {@link AuthenticationProvider}.
+	 *
+	 * 设置提供访问默认和（可选）添加的 AuthenticationProvider 列表的消费者，允许添加、删除或自定义特定 AuthenticationProvider。
 	 *
 	 * @param authenticationProvidersConsumer the {@code Consumer} providing access to the {@code List} of default and (optionally) added {@link AuthenticationProvider}'s
 	 * @return the {@link OAuth2ClientAuthenticationConfigurer} for further configuration
@@ -136,6 +144,8 @@ public final class OAuth2ClientAuthenticationConfigurer extends AbstractOAuth2Co
 	 * Sets the {@link AuthenticationSuccessHandler} used for handling a successful client authentication
 	 * and associating the {@link OAuth2ClientAuthenticationToken} to the {@link SecurityContext}.
 	 *
+	 * AuthenticationSuccessHandler（后处理器）用于处理成功的客户端身份验证，并将 OAuth2ClientAuthenticationToken 关联到 SecurityContext。
+	 *
 	 * @param authenticationSuccessHandler the {@link AuthenticationSuccessHandler} used for handling a successful client authentication
 	 * @return the {@link OAuth2ClientAuthenticationConfigurer} for further configuration
 	 */
@@ -147,6 +157,8 @@ public final class OAuth2ClientAuthenticationConfigurer extends AbstractOAuth2Co
 	/**
 	 * Sets the {@link AuthenticationFailureHandler} used for handling a failed client authentication
 	 * and returning the {@link OAuth2Error Error Response}.
+	 *
+	 *  AuthenticationFailureHandler（后处理器）用于处理客户端身份验证失败并返回 OAuth2Error 响应。
 	 *
 	 * @param errorResponseHandler the {@link AuthenticationFailureHandler} used for handling a failed client authentication
 	 * @return the {@link OAuth2ClientAuthenticationConfigurer} for further configuration
@@ -184,9 +196,23 @@ public final class OAuth2ClientAuthenticationConfigurer extends AbstractOAuth2Co
 
 	@Override
 	void configure(HttpSecurity httpSecurity) {
+
+		/**
+		 * AuthenticationManager ->  由
+		 * @see JwtClientAssertionAuthenticationProvider
+		 * @see ClientSecretAuthenticationProvider
+		 * @see PublicClientAuthenticationProvider
+		 * 组成
+		 * TODO 疑问：这里的 AuthenticationManager 是怎么组装的？
+		 */
+
 		AuthenticationManager authenticationManager = httpSecurity.getSharedObject(AuthenticationManager.class);
+		// OAuth2ClientAuthenticationConfigurer 配置 OAuth2ClientAuthenticationFilter 并将其注册到 OAuth2 授权服务器 SecurityFilterChain @Bean 上。
+		// OAuth2ClientAuthenticationFilter 是处理客户端身份验证请求的过滤器。
 		OAuth2ClientAuthenticationFilter clientAuthenticationFilter = new OAuth2ClientAuthenticationFilter(
 				authenticationManager, this.requestMatcher);
+
+		// AuthenticationConverter
 		List<AuthenticationConverter> authenticationConverters = createDefaultAuthenticationConverters();
 		if (!this.authenticationConverters.isEmpty()) {
 			authenticationConverters.addAll(0, this.authenticationConverters);
@@ -195,9 +221,11 @@ public final class OAuth2ClientAuthenticationConfigurer extends AbstractOAuth2Co
 		clientAuthenticationFilter.setAuthenticationConverter(
 				new DelegatingAuthenticationConverter(authenticationConverters));
 		if (this.authenticationSuccessHandler != null) {
+			// AuthenticationSuccessHandler
 			clientAuthenticationFilter.setAuthenticationSuccessHandler(this.authenticationSuccessHandler);
 		}
 		if (this.errorResponseHandler != null) {
+			// AuthenticationFailureHandler
 			clientAuthenticationFilter.setAuthenticationFailureHandler(this.errorResponseHandler);
 		}
 		httpSecurity.addFilterAfter(postProcess(clientAuthenticationFilter), AbstractPreAuthenticatedProcessingFilter.class);
@@ -208,6 +236,14 @@ public final class OAuth2ClientAuthenticationConfigurer extends AbstractOAuth2Co
 		return this.requestMatcher;
 	}
 
+	/**
+	 * AuthenticationConverter ->  由
+	 * @see JwtClientAssertionAuthenticationConverter
+	 * @see ClientSecretBasicAuthenticationConverter
+	 * @see ClientSecretPostAuthenticationConverter
+	 * @see PublicClientAuthenticationConverter
+	 * 组成
+	 */
 	private static List<AuthenticationConverter> createDefaultAuthenticationConverters() {
 		List<AuthenticationConverter> authenticationConverters = new ArrayList<>();
 

@@ -22,6 +22,8 @@ import org.springframework.util.Assert;
 /**
  * A facility for authorization server configuration settings.
  *
+ * AuthorizationServerSettings 是一个必须组件。
+ *
  * @author Daniel Garnier-Moiroux
  * @author Joe Grandja
  * @since 0.1.0
@@ -143,13 +145,13 @@ public final class AuthorizationServerSettings extends AbstractSettings {
 	 */
 	public static Builder builder() {
 		return new Builder()
-				.authorizationEndpoint("/oauth2/authorize")
-				.deviceAuthorizationEndpoint("/oauth2/device_authorization")
-				.deviceVerificationEndpoint("/oauth2/device_verification")
-				.tokenEndpoint("/oauth2/token")
+				.authorizationEndpoint("/oauth2/authorize") 				 // 授权端点
+				.deviceAuthorizationEndpoint("/oauth2/device_authorization") // 设备授权端点
+				.deviceVerificationEndpoint("/oauth2/device_verification")   //  设备验证端点
+				.tokenEndpoint("/oauth2/token")								 // 令牌端点
 				.jwkSetEndpoint("/oauth2/jwks")
-				.tokenRevocationEndpoint("/oauth2/revoke")
-				.tokenIntrospectionEndpoint("/oauth2/introspect")
+				.tokenRevocationEndpoint("/oauth2/revoke")  			     // 令牌撤销端点
+				.tokenIntrospectionEndpoint("/oauth2/introspect") 			 // 令牌自省端点
 				.oidcClientRegistrationEndpoint("/connect/register")
 				.oidcUserInfoEndpoint("/userinfo")
 				.oidcLogoutEndpoint("/connect/logout");
@@ -177,6 +179,8 @@ public final class AuthorizationServerSettings extends AbstractSettings {
 
 		/**
 		 * Sets the URL the Authorization Server uses as its Issuer Identifier.
+		 *
+		 * 设置授权服务器用作其颁发者标识符的 URL。
 		 *
 		 * @param issuer the URL the Authorization Server uses as its Issuer Identifier.
 		 * @return the {@link Builder} for further configuration

@@ -24,6 +24,22 @@ import org.springframework.security.oauth2.server.authorization.OAuth2Authorizat
  * Implementations of this interface are responsible for generating an {@link OAuth2Token}
  * using the attributes contained in the {@link OAuth2TokenContext}.
  *
+ *
+ * OAuth2TokenGenerator 负责根据所提供的 OAuth2TokenContext 中包含的信息生成 OAuth2Token。
+ * 生成的 OAuth2Token 主要取决于 OAuth2TokenContext 中指定的 OAuth2TokenType 类型。
+ * 例如，当 OAuth2TokenType 的值为
+ * code，则生成 OAuth2AuthorizationCode。
+ * access_token，则生成 OAuth2AccessToken。
+ * refresh_token，则生成 OAuth2RefreshToken。
+ * id_token，然后生成 OidcIdToken。
+ *
+ * OAuth2TokenGenerator 是一个可选组件，默认为由
+ * @see OAuth2AccessTokenGenerator 和
+ * @see OAuth2RefreshTokenGenerator 组成的
+ * @see DelegatingOAuth2TokenGenerator。
+ *
+ * ！！！可选 ！！！
+ *
  * @author Joe Grandja
  * @since 0.2.3
  * @see OAuth2Token

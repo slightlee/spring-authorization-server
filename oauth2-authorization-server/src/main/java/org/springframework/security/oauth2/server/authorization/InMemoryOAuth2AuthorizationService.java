@@ -35,6 +35,7 @@ import org.springframework.util.Assert;
 /**
  * An {@link OAuth2AuthorizationService} that stores {@link OAuth2Authorization}'s in-memory.
  *
+ * 默认使用的是InMemoryOAuth2AuthorizationService
  * <p>
  * <b>NOTE:</b> This implementation should ONLY be used during development/testing.
  *

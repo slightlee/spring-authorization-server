@@ -59,6 +59,8 @@ import org.springframework.util.Assert;
 /**
  * An {@link AbstractHttpConfigurer} for OAuth 2.0 Authorization Server support.
  *
+ * 源码入口01：OAuth2AuthorizationServerConfigurer
+ *
  * @author Joe Grandja
  * @author Daniel Garnier-Moiroux
  * @author Gerardo Roza
@@ -90,6 +92,8 @@ public final class OAuth2AuthorizationServerConfigurer
 	/**
 	 * Sets the repository of registered clients.
 	 *
+	 * 注册客户存储库（必填），用于管理新客户和现有客户。
+	 *
 	 * @param registeredClientRepository the repository of registered clients
 	 * @return the {@link OAuth2AuthorizationServerConfigurer} for further configuration
 	 */
@@ -101,6 +105,8 @@ public final class OAuth2AuthorizationServerConfigurer
 
 	/**
 	 * Sets the authorization service.
+	 *
+	 * 用于管理新授权和现有授权的 OAuth2AuthorizationService。
 	 *
 	 * @param authorizationService the authorization service
 	 * @return the {@link OAuth2AuthorizationServerConfigurer} for further configuration
@@ -114,6 +120,8 @@ public final class OAuth2AuthorizationServerConfigurer
 	/**
 	 * Sets the authorization consent service.
 	 *
+	 * OAuth2AuthorizationConsentService 用于管理新的和现有的授权同意。
+	 *
 	 * @param authorizationConsentService the authorization consent service
 	 * @return the {@link OAuth2AuthorizationServerConfigurer} for further configuration
 	 */
@@ -126,6 +134,8 @@ public final class OAuth2AuthorizationServerConfigurer
 	/**
 	 * Sets the authorization server settings.
 	 *
+	 * AuthorizationServerSettings（必须），用于自定义 OAuth2 授权服务器的配置设置。
+	 *
 	 * @param authorizationServerSettings the authorization server settings
 	 * @return the {@link OAuth2AuthorizationServerConfigurer} for further configuration
 	 */
@@ -137,6 +147,8 @@ public final class OAuth2AuthorizationServerConfigurer
 
 	/**
 	 * Sets the token generator.
+	 *
+	 * OAuth2TokenGenerator 用于生成 OAuth2 授权服务器支持的令牌。
 	 *
 	 * @param tokenGenerator the token generator
 	 * @return the {@link OAuth2AuthorizationServerConfigurer} for further configuration
@@ -151,6 +163,8 @@ public final class OAuth2AuthorizationServerConfigurer
 	/**
 	 * Configures OAuth 2.0 Client Authentication.
 	 *
+	 * OAuth2 客户端身份验证的配置器。
+	 *
 	 * @param clientAuthenticationCustomizer the {@link Customizer} providing access to the {@link OAuth2ClientAuthenticationConfigurer}
 	 * @return the {@link OAuth2AuthorizationServerConfigurer} for further configuration
 	 */
@@ -161,6 +175,8 @@ public final class OAuth2AuthorizationServerConfigurer
 
 	/**
 	 * Configures the OAuth 2.0 Authorization Server Metadata Endpoint.
+	 *
+	 * OAuth2 授权服务器元数据端点的配置器
 	 *
 	 * @param authorizationServerMetadataEndpointCustomizer the {@link Customizer} providing access to the {@link OAuth2AuthorizationServerMetadataEndpointConfigurer}
 	 * @return the {@link OAuth2AuthorizationServerConfigurer} for further configuration
@@ -174,6 +190,8 @@ public final class OAuth2AuthorizationServerConfigurer
 	/**
 	 * Configures the OAuth 2.0 Authorization Endpoint.
 	 *
+	 * OAuth2 授权端点的配置器。
+	 *
 	 * @param authorizationEndpointCustomizer the {@link Customizer} providing access to the {@link OAuth2AuthorizationEndpointConfigurer}
 	 * @return the {@link OAuth2AuthorizationServerConfigurer} for further configuration
 	 */
@@ -185,6 +203,8 @@ public final class OAuth2AuthorizationServerConfigurer
 	/**
 	 * Configures the OAuth 2.0 Token Endpoint.
 	 *
+	 *  OAuth2 令牌端点的配置器
+	 *
 	 * @param tokenEndpointCustomizer the {@link Customizer} providing access to the {@link OAuth2TokenEndpointConfigurer}
 	 * @return the {@link OAuth2AuthorizationServerConfigurer} for further configuration
 	 */
@@ -195,6 +215,8 @@ public final class OAuth2AuthorizationServerConfigurer
 
 	/**
 	 * Configures the OAuth 2.0 Token Introspection Endpoint.
+	 *
+	 * OAuth2 令牌自省端点的配置器。
 	 *
 	 * @param tokenIntrospectionEndpointCustomizer the {@link Customizer} providing access to the {@link OAuth2TokenIntrospectionEndpointConfigurer}
 	 * @return the {@link OAuth2AuthorizationServerConfigurer} for further configuration
@@ -208,6 +230,8 @@ public final class OAuth2AuthorizationServerConfigurer
 	/**
 	 * Configures the OAuth 2.0 Token Revocation Endpoint.
 	 *
+	 * OAuth2 令牌撤销端点的配置器。
+	 *
 	 * @param tokenRevocationEndpointCustomizer the {@link Customizer} providing access to the {@link OAuth2TokenRevocationEndpointConfigurer}
 	 * @return the {@link OAuth2AuthorizationServerConfigurer} for further configuration
 	 * @since 0.2.2
@@ -220,6 +244,8 @@ public final class OAuth2AuthorizationServerConfigurer
 	/**
 	 * Configures the OAuth 2.0 Device Authorization Endpoint.
 	 *
+	 *  OAuth2 设备授权端点的配置器。
+	 *
 	 * @param deviceAuthorizationEndpointCustomizer the {@link Customizer} providing access to the {@link OAuth2DeviceAuthorizationEndpointConfigurer}
 	 * @return the {@link OAuth2AuthorizationServerConfigurer} for further configuration
 	 * @since 1.1
@@ -231,6 +257,8 @@ public final class OAuth2AuthorizationServerConfigurer
 
 	/**
 	 * Configures the OAuth 2.0 Device Verification Endpoint.
+	 *
+	 * OAuth2 设备验证端点的配置器。
 	 *
 	 * @param deviceVerificationEndpointCustomizer the {@link Customizer} providing access to the {@link OAuth2DeviceVerificationEndpointConfigurer}
 	 * @return the {@link OAuth2AuthorizationServerConfigurer} for further configuration

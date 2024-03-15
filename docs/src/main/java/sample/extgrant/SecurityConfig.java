@@ -100,6 +100,7 @@ public class SecurityConfig {
 
 	@Bean
 	OAuth2AuthorizationService authorizationService() {
+		// 默认使用内存模式
 		return new InMemoryOAuth2AuthorizationService();
 	}
 

@@ -21,6 +21,13 @@ import org.springframework.lang.Nullable;
  * Implementations of this interface are responsible for the management
  * of {@link OAuth2Authorization OAuth 2.0 Authorization(s)}.
  *
+ * OAuth2AuthorizationService 是存储新授权和查询现有授权的中心组件。其他组件在遵循特定协议流程（如客户端身份验证、授权授予处理、
+ * 令牌反省、令牌撤销、动态客户端注册等）时都会用到它。
+ *
+ * OAuth2AuthorizationService 的实现有 InMemoryOAuth2AuthorizationService 和 JdbcOAuth2AuthorizationService。
+ * InMemoryOAuth2AuthorizationService 实现在内存中存储 OAuth2Authorization 实例，建议仅在开发和测试期间使用。
+ * JdbcOAuth2AuthorizationService 是一种 JDBC 实现，它通过使用 JdbcOperations 来持久化 OAuth2Authorization 实例。
+ *
  * @author Joe Grandja
  * @since 0.0.1
  * @see OAuth2Authorization

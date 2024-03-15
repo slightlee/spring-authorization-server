@@ -46,6 +46,8 @@ public interface OAuth2TokenContext extends Context {
 	/**
 	 * Returns the {@link RegisteredClient registered client}.
 	 *
+	 * 与授权许可相关的注册客户端。
+	 *
 	 * @return the {@link RegisteredClient}
 	 */
 	default RegisteredClient getRegisteredClient() {
@@ -54,6 +56,8 @@ public interface OAuth2TokenContext extends Context {
 
 	/**
 	 * Returns the {@link Authentication} representing the {@code Principal} resource owner (or client).
+	 *
+	 * 资源所有者（或客户端）的身份验证实例。
 	 *
 	 * @param <T> the type of the {@code Authentication}
 	 * @return the {@link Authentication} representing the {@code Principal} resource owner (or client)
@@ -65,6 +69,8 @@ public interface OAuth2TokenContext extends Context {
 	/**
 	 * Returns the {@link AuthorizationServerContext authorization server context}.
 	 *
+	 * AuthorizationServerContext 对象，用于保存授权服务器运行时环境的信息。
+	 *
 	 * @return the {@link AuthorizationServerContext}
 	 * @since 0.2.3
 	 */
@@ -75,6 +81,8 @@ public interface OAuth2TokenContext extends Context {
 	/**
 	 * Returns the {@link OAuth2Authorization authorization}.
 	 *
+	 * 与授权许可相关联的 OAuth2Authorization。
+	 *
 	 * @return the {@link OAuth2Authorization}, or {@code null} if not available
 	 */
 	@Nullable
@@ -84,6 +92,8 @@ public interface OAuth2TokenContext extends Context {
 
 	/**
 	 * Returns the authorized scope(s).
+	 *
+	 * 为客户授权的范围
 	 *
 	 * @return the authorized scope(s)
 	 */
@@ -96,6 +106,8 @@ public interface OAuth2TokenContext extends Context {
 	/**
 	 * Returns the {@link OAuth2TokenType token type}.
 	 *
+	 * 要生成的 OAuth2TokenType。支持的值为 code、access_token、refresh_token 和 id_token。
+	 *
 	 * @return the {@link OAuth2TokenType}
 	 */
 	default OAuth2TokenType getTokenType() {
@@ -105,6 +117,8 @@ public interface OAuth2TokenContext extends Context {
 	/**
 	 * Returns the {@link AuthorizationGrantType authorization grant type}.
 	 *
+	 * 与授权许可相关的 AuthorizationGrantType。
+	 *
 	 * @return the {@link AuthorizationGrantType}
 	 */
 	default AuthorizationGrantType getAuthorizationGrantType() {
@@ -113,6 +127,8 @@ public interface OAuth2TokenContext extends Context {
 
 	/**
 	 * Returns the {@link Authentication} representing the authorization grant.
+	 *
+	 * 处理授权许可的 AuthenticationProvider 使用的 Authentication 实例。
 	 *
 	 * @param <T> the type of the {@code Authentication}
 	 * @return the {@link Authentication} representing the authorization grant

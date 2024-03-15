@@ -868,6 +868,9 @@ public class OAuth2AuthorizationCodeGrantTests {
 		return uriComponents.getQueryParams().getFirst(param);
 	}
 
+	/**
+	 * @import（OAuth2AuthorizationServerconfiguration.class）自动注册一个AuthorizationServerSettings @Bean（如果尚未提供）
+	 */
 	@EnableWebSecurity
 	@Import(OAuth2AuthorizationServerConfiguration.class)
 	static class AuthorizationServerConfiguration {

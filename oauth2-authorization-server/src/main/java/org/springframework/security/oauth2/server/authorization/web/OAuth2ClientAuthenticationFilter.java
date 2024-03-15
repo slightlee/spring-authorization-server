@@ -58,6 +58,10 @@ import org.springframework.web.filter.OncePerRequestFilter;
 /**
  * A {@code Filter} that processes an authentication request for an OAuth 2.0 Client.
  *
+ * 配置以下默认配置
+ *
+ *
+ *
  * @author Joe Grandja
  * @author Patryk Kostrzewa
  * @since 0.0.1
@@ -94,6 +98,10 @@ public final class OAuth2ClientAuthenticationFilter extends OncePerRequestFilter
 		Assert.notNull(requestMatcher, "requestMatcher cannot be null");
 		this.authenticationManager = authenticationManager;
 		this.requestMatcher = requestMatcher;
+
+		/**
+		 * DelegatingAuthenticationConverter 实现 AuthenticationConverter 接口
+		 */
 		this.authenticationConverter = new DelegatingAuthenticationConverter(
 				Arrays.asList(
 						new JwtClientAssertionAuthenticationConverter(),

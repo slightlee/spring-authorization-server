@@ -20,6 +20,10 @@ import org.springframework.lang.Nullable;
 /**
  * A repository for OAuth 2.0 {@link RegisteredClient}(s).
  *
+ * RegisteredClientRepository是一个中心组件，可以在其中注册新客户端并查询现有客户端。
+ * 它由其他组件在遵循特定协议流时使用，例如客户端身份验证、授权授予处理、令牌内省、动态客户端注册等。
+ * 			！！！必须组件！！！
+ *
  * @author Joe Grandja
  * @author Anoop Garlapati
  * @author Ovidiu Popa

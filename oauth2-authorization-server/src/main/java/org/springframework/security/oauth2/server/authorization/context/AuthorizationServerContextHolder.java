@@ -29,6 +29,9 @@ public final class AuthorizationServerContextHolder {
 	}
 
 	/**
+	 *
+	 * 获取绑定到当前线程的{@link AuthorizationServerContext}。
+	 *
 	 * Returns the {@link AuthorizationServerContext} bound to the current thread.
 	 *
 	 * @return the {@link AuthorizationServerContext}

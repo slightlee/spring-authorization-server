@@ -58,6 +58,8 @@ public final class OidcConfigurer extends AbstractOAuth2Configurer {
 	/**
 	 * Configures the OpenID Connect 1.0 Provider Configuration Endpoint.
 	 *
+	 * OpenID Connect 1.0 提供商配置端点的配置器。
+	 *
 	 * @param providerConfigurationEndpointCustomizer the {@link Customizer} providing access to the {@link OidcProviderConfigurationEndpointConfigurer}
 	 * @return the {@link OidcConfigurer} for further configuration
 	 * @since 0.4.0
@@ -70,6 +72,8 @@ public final class OidcConfigurer extends AbstractOAuth2Configurer {
 	/**
 	 * Configures the OpenID Connect 1.0 RP-Initiated Logout Endpoint.
 	 *
+	 * OpenID Connect 1.0 注销终点的配置器。
+	 *
 	 * @param logoutEndpointCustomizer the {@link Customizer} providing access to the {@link OidcLogoutEndpointConfigurer}
 	 * @return the {@link OidcConfigurer} for further configuration
 	 * @since 1.1
@@ -81,6 +85,8 @@ public final class OidcConfigurer extends AbstractOAuth2Configurer {
 
 	/**
 	 * Configures the OpenID Connect Dynamic Client Registration 1.0 Endpoint.
+	 *
+	 *  OpenID Connect 1.0 客户端注册端点的配置器。
 	 *
 	 * @param clientRegistrationEndpointCustomizer the {@link Customizer} providing access to the {@link OidcClientRegistrationEndpointConfigurer}
 	 * @return the {@link OidcConfigurer} for further configuration
@@ -99,6 +105,8 @@ public final class OidcConfigurer extends AbstractOAuth2Configurer {
 
 	/**
 	 * Configures the OpenID Connect 1.0 UserInfo Endpoint.
+	 *
+	 * OpenID Connect 1.0 UserInfo 端点的配置器
 	 *
 	 * @param userInfoEndpointCustomizer the {@link Customizer} providing access to the {@link OidcUserInfoEndpointConfigurer}
 	 * @return the {@link OidcConfigurer} for further configuration

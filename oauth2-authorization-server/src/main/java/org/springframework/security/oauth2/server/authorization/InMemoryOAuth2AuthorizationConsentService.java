@@ -31,6 +31,8 @@ import org.springframework.util.Assert;
  * <p>
  * <b>NOTE:</b> This implementation should ONLY be used during development/testing.
  *
+ * 默认
+ *
  * @author Daniel Garnier-Moiroux
  * @since 0.1.2
  * @see OAuth2AuthorizationConsentService

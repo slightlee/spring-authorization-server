@@ -39,6 +39,12 @@ import org.springframework.util.CollectionUtils;
  * the client requested. The typical use-case is the {@code authorization_code} flow, in which the client
  * requests a set of {@code scope}s. The resource owner then selects which scopes they grant to the client.
  *
+ * OAuth2AuthorizationConsent 是来自 OAuth2 授权请求流的授权 "同意"（决定）的表示--例如，authorization_code grant（授权码授予），
+ * 它包含资源所有者授予客户端的权限。
+ *
+ * 在授权客户访问时，资源所有者可能只授予客户请求的授权的一个子集。典型的用例是授权_代码授予流，其中客户请求范围，
+ * 资源所有者授予（或拒绝）对所请求范围的访问。
+ *
  * @author Daniel Garnier-Moiroux
  * @since 0.1.2
  */
@@ -47,8 +53,8 @@ public final class OAuth2AuthorizationConsent implements Serializable {
 	private static final String AUTHORITIES_SCOPE_PREFIX = "SCOPE_";
 
 	private final String registeredClientId;
-	private final String principalName;
-	private final Set<GrantedAuthority> authorities;
+	private final String principalName;  // 资源所有者的主体名称。
+	private final Set<GrantedAuthority> authorities; //  资源所有者授予客户端的权限。授权可以代表范围、权利要求、权限、角色等。
 
 	private OAuth2AuthorizationConsent(String registeredClientId, String principalName, Set<GrantedAuthority> authorities) {
 		this.registeredClientId = registeredClientId;

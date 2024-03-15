@@ -31,6 +31,8 @@ import org.springframework.util.Assert;
  * {@link OAuth2TokenGenerator#generate(OAuth2TokenContext)}
  * with the first {@code non-null} {@link OAuth2Token} being returned.
  *
+ * 如果注册了 JwtEncoder @Bean或 JWKSource<SecurityContext> @Bean，则在 DelegatingOAuth2TokenGenerator 中另外组成一个 JwtGenerator。
+ *
  * @author Joe Grandja
  * @since 0.2.3
  * @see OAuth2TokenGenerator

@@ -24,6 +24,16 @@ import java.security.Principal;
  * Implementations of this interface are responsible for the management
  * of {@link OAuth2AuthorizationConsent OAuth 2.0 Authorization Consent(s)}.
  *
+ * OAuth2AuthorizationConsentService 是存储新授权同意和查询现有授权同意的中心组件。
+ * 它主要由实现 OAuth2 授权请求流程（例如授权代码授予）的组件使用。
+ *
+ * OAuth2AuthorizationConsentService 的实现有 InMemoryOAuth2AuthorizationConsentService 和
+ * JdbcOAuth2AuthorizationConsentService。InMemoryOAuth2AuthorizationConsentService 实现在内存中存储
+ * OAuth2AuthorizationConsent 实例，建议仅用于开发和测试。JdbcOAuth2AuthorizationConsentService 是一种 JDBC 实现，
+ * 它通过使用 JdbcOperations 来持久化 OAuth2AuthorizationConsent 实例。
+ *
+ * ！！！可选组件！！！
+ *
  * @author Daniel Garnier-Moiroux
  * @since 0.1.2
  * @see OAuth2AuthorizationConsent
